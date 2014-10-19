@@ -67,6 +67,25 @@ public class Fraction {
         int denom = this.getDenominator() * frac.getDenominator();
         return new Fraction(num, denom);
     }
+    
+    public Fraction add(Fraction frac) {
+    	//method adds fraction, returns new result fraction
+    	int lcd = myLcd(this.getDenominator(), frac.getDenominator());
+        int num1 = this.getNumerator() * (lcd/this.getDenominator());
+        int num2 = frac.getNumerator() * (lcd/frac.getDenominator());
+        int numSum = num1 + num2;
+        Fraction result = new Fraction(numSum, lcd);
+        return result;
+    }
+    
+    private int myLcd(int denom1, int denom2) {
+    	//lcd method calculates and returns lowest common denominator
+    	int lcd;
+    	if (denom1 == denom2) {
+    		lcd = denom1;
+    	} else lcd = denom1 * denom2;
+    	return lcd;
+    }
 
     private int myGcd(int a, int b) {
         while (b != 0) {
@@ -76,4 +95,5 @@ public class Fraction {
         }
         return a;
     }
+
 }
