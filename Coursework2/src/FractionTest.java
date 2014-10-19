@@ -35,15 +35,19 @@ public class FractionTest {
 
 		}
 		
-		/*
+		
 		@Test
 		public void testSubtract() {
 			//test subtract. Write method
 			assertEquals((new Fraction(3, 5)), (new Fraction(4, 5).subtract(new Fraction(1, 5))));
 			assertEquals((new Fraction(5, 10)), (new Fraction(1, 10).subtract(new Fraction(-4, 10))));
+			assertEquals((new Fraction(-3, 4)), (new Fraction(1, 6).subtract(new Fraction(11, 12))));
+			assertEquals((new Fraction(1, 5)), (new Fraction(-2, 5).subtract(new Fraction(-3, 5))));
 
+			
 		}
 		
+		/*
 		@Test
 		public void testDivide() {
 			//test divide. Write method

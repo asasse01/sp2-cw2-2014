@@ -78,6 +78,16 @@ public class Fraction {
         return result;
     }
     
+    public Fraction subtract(Fraction frac) {
+    	//method subtracts fraction, returns new result fraction
+    	int lcd = myLcd(this.getDenominator(), frac.getDenominator());
+        int num1 = this.getNumerator() * (lcd/this.getDenominator());
+        int num2 = frac.getNumerator() * (lcd/frac.getDenominator());
+        int numSum = num1 - num2;
+        Fraction result = new Fraction(numSum, lcd);
+        return result;
+    }
+    
     private int myLcd(int denom1, int denom2) {
     	//lcd method calculates and returns lowest common denominator
     	int lcd;
