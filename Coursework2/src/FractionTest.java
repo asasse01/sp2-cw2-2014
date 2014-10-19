@@ -47,15 +47,16 @@ public class FractionTest {
 			
 		}
 		
-		/*
+		
 		@Test
 		public void testDivide() {
 			//test divide. Write method
-			assertEquals((new Fraction(4, 9)), (new Fraction(1, 2).divide(new Fraction(2, 9))));
-			assertEquals((new Fraction(4, 10)), (new Fraction(8, 10).divide(new Fraction(4, 2))));
+			assertEquals((new Fraction(9, 4)), (new Fraction(1, 2).divide(new Fraction(2, 9))));
+			assertEquals((new Fraction(2, 5)), (new Fraction(8, 10).divide(new Fraction(4, 2))));
 
 		}
 		
+		/*
 		@Test
 		public void testAbsValue() {
 			//test absValue. Write method

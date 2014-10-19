@@ -88,6 +88,21 @@ public class Fraction {
         return result;
     }
     
+    public Fraction divide(Fraction frac) {
+    	//method subtracts fraction, returns new result fraction
+    	Fraction reciprocal = reciprocate(frac);
+        Fraction result = this.multiply(reciprocal);
+        return result;
+    }
+    
+    private Fraction reciprocate(Fraction frac) {
+    	//method returns reciprocal of fraction
+    	int recNum = frac.getDenominator();
+    	int recDenom = frac.getNumerator();
+    	Fraction reciprocal = new Fraction(recNum, recDenom);
+    	return reciprocal;
+    }    
+    
     private int myLcd(int denom1, int denom2) {
     	//lcd method calculates and returns lowest common denominator
     	int lcd;
