@@ -22,7 +22,11 @@ public class Fraction {
 
     @Override
     public String toString() {
-        return "" + getNumerator() + '/' + getDenominator();
+    	String str = "" + getNumerator();
+    	if(getDenominator() != 1)  {
+    		str += "/" + getDenominator();
+    	}
+        return str;
     }
 
     public int getNumerator() {
@@ -101,7 +105,7 @@ public class Fraction {
     	int denom = this.getDenominator();
     	if (num < 0 ^ denom < 0) {
     		//where ^ is XOR
-    		num = -num;
+    		denom = -denom;
     	}
     	
     	Fraction absVal = new Fraction(num, denom);
