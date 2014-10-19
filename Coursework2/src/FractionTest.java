@@ -1,6 +1,8 @@
 import static org.junit.Assert.*;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 public class FractionTest {
 	  
@@ -66,16 +68,19 @@ public class FractionTest {
 			assertEquals("3/-5", (new Fraction(-3, 5)).toString());
 		}
 
-
-/*	
- * 	@Test
-
-		public void test2() {
-			// test divide by zero - should print an error and exit
-	        
-	        assertEquals ("The numerator is divided by zero", new Fraction(1, 0));
-	        
+		/*test and rule for testZeroDenom from 
+		 * http://stackoverflow.com/questions/156503/how-do-you-assert-that-a-certain-exception-is-thrown-in-junit-4-tests
+		 */
+	
+		@Rule
+		public ExpectedException exception = ExpectedException.none();
+		
+		@Test
+		public void testZeroDenom() {
+		    exception.expect(IllegalArgumentException.class);
+		    new Fraction(1, 0);
+			    
 		}
- */
+ 
 		
 }
