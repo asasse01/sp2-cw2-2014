@@ -4,7 +4,6 @@ import org.junit.Test;
 
 public class FractionTest {
 	  
-		/*
 		@Test
 		public void testMultiply() {
 			// test multiply. Extend to include other tests
@@ -22,8 +21,6 @@ public class FractionTest {
 			assertEquals("Fractions not equal", new Fraction(-1, -2), new Fraction(1, 2));
 	
 		}
-		*/
-
 		
 	
 		@Test
@@ -58,13 +55,12 @@ public class FractionTest {
 		}
 	
 		@Test
-		public void negate() {
-			//test divide. Write method
+		public void testNegate() {
+			//test negate. Write method
 			assertEquals((new Fraction(2, 6)), negate(new Fraction(-2, 6)));
 			assertEquals((new Fraction(-7, 10)), negate(new Fraction(7, 10)));
 		}
 		
-			*/	
 
 
 		
