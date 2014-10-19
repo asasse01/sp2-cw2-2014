@@ -57,21 +57,18 @@ public class FractionTest {
 		
 		@Test
 		public void testAbsValue() {
-			//test absValue. Write method
 			assertEquals((new Fraction(2, 6)), (new Fraction(-2, 6)).getAbsVal());
 			assertEquals((new Fraction(7, 10)), (new Fraction(-7, -10)).getAbsVal());
 		}
 	
-		/*
+		
 		@Test
 		public void testNegate() {
-			//test negate. Write method
-			assertEquals((new Fraction(2, 6)), negate(new Fraction(-2, 6)));
-			assertEquals((new Fraction(-7, 10)), negate(new Fraction(7, 10)));
+			assertEquals((new Fraction(2, 6)), (new Fraction(-2, 6)).negate());
+			assertEquals((new Fraction(-7, 10)), (new Fraction(7, 10)).negate());
 		}
 
 
-		*/
 /*	
  * 	@Test
 

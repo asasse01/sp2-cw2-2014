@@ -108,6 +108,17 @@ public class Fraction {
     	return absVal;
     } 
     
+    public Fraction negate() {
+    	//method returns negated value of fraction
+    	int num = this.getNumerator();
+    	int denom = this.getDenominator();
+
+    	num = -num;
+    	
+    	Fraction negated = new Fraction(num, denom);
+    	return negated;
+    } 
+    
     private Fraction reciprocate(Fraction frac) {
     	//method returns reciprocal of fraction
     	int recNum = frac.getDenominator();
