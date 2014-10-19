@@ -95,6 +95,19 @@ public class Fraction {
         return result;
     }
     
+    public Fraction getAbsVal() {
+    	//method returns absolute value of fraction
+    	int num = this.getNumerator();
+    	int denom = this.getDenominator();
+    	if (num < 0 ^ denom < 0) {
+    		//where ^ is XOR
+    		num = -num;
+    	}
+    	
+    	Fraction absVal = new Fraction(num, denom);
+    	return absVal;
+    } 
+    
     private Fraction reciprocate(Fraction frac) {
     	//method returns reciprocal of fraction
     	int recNum = frac.getDenominator();

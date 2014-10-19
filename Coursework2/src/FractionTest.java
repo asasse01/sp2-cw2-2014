@@ -38,7 +38,6 @@ public class FractionTest {
 		
 		@Test
 		public void testSubtract() {
-			//test subtract. Write method
 			assertEquals((new Fraction(3, 5)), (new Fraction(4, 5).subtract(new Fraction(1, 5))));
 			assertEquals((new Fraction(5, 10)), (new Fraction(1, 10).subtract(new Fraction(-4, 10))));
 			assertEquals((new Fraction(-3, 4)), (new Fraction(1, 6).subtract(new Fraction(11, 12))));
@@ -50,20 +49,20 @@ public class FractionTest {
 		
 		@Test
 		public void testDivide() {
-			//test divide. Write method
 			assertEquals((new Fraction(9, 4)), (new Fraction(1, 2).divide(new Fraction(2, 9))));
 			assertEquals((new Fraction(2, 5)), (new Fraction(8, 10).divide(new Fraction(4, 2))));
 
 		}
 		
-		/*
+		
 		@Test
 		public void testAbsValue() {
 			//test absValue. Write method
-			assertEquals((new Fraction(2, 6)), absValue(new Fraction(-2, 6)));
-			assertEquals((new Fraction(7, 10)), absValue(new Fraction(7, -10)));
+			assertEquals((new Fraction(2, 6)), (new Fraction(-2, 6)).getAbsVal());
+			assertEquals((new Fraction(7, 10)), (new Fraction(-7, -10)).getAbsVal());
 		}
 	
+		/*
 		@Test
 		public void testNegate() {
 			//test negate. Write method
