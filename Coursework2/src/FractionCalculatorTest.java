@@ -5,6 +5,7 @@ import org.junit.Test;
 
 public class FractionCalculatorTest {
 
+	/*
 	@Test
 	public void testEvaluate() {
 		assertEquals((new Fraction(3, 10)), evaluate((new Fraction(3, 5)), "* 1/2"));
@@ -16,6 +17,14 @@ public class FractionCalculatorTest {
 		assertEquals((new Fraction(7, -10)), evaluate((new Fraction(7, 10)), "neg"));
 		assertEquals((0), evaluate((new Fraction(7, 10)), "C"));
 
-	 }
+	 }*/
+
+	@Test
+	public void testToFraction() {
+		assertEquals((new Fraction(3, 10)), toFraction("3/10"));
+		assertEquals((new Fraction(1, 10)), toFraction("2/20"));
+		assertEquals((new Fraction(-3, 4)), toFraction("-3/4"));
+		assertEquals((new Fraction(2, 5)), toFraction("-2/-5"));
+	}
 
 }
