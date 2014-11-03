@@ -1,65 +1,60 @@
 
+
+
 public class FractionCalculator {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 	}
-	
+
 	
 	public static Fraction evaluate(Fraction fraction, String input) {
-		// TODO recursive function to break string?
-		// TODO convert if to switch statements
-		Fraction valueinCalc = new Fraction(0, 1);
-		char stored = 0;
-		String fractionSubstr = "";
-		String inputchar;
-		int split = 0;
-		
-		if (input == "a" || input == "abs" || input == "A" )  {
-			// shorten if statement
-			valueinCalc = fraction.getAbsVal();
-			//clear  valueinCalc?
-		} else if (input == "n" || input == "neg" || input == "N")  {
-			valueinCalc = fraction.negate();
-			//clear  valueinCalc?
-		} else if (input == "c" || input == "clear" || input == "C")  {
-			valueinCalc = new Fraction(0, 1);
-		} else {
-			for (int i = 0; i < input.length()-1; i++) {
-				
-				inputchar = input.substring(i, i+1);
-				//TODO new function to continue once fraction operated on
-				if (input.charAt(i) == '+' || input.charAt(i) == '-' 
-						|| input.charAt(i) == '*' 
-						|| input.charAt(i) == '/') {
-					//raise exception if already stored
-					stored = input.charAt(i); 
-				} else if (inputchar.equals(" "))  {
-					split = i;
+		Fraction valueInCalc = new Fraction(0, 1); //class var?
+		valueInCalc = fraction;
+		String stored = "";
+		String[] splitString = input.split(" ");
+	
+		for (String str : splitString) { 
+			
+			// evaluate other variables
+			if (str.equals("a") || str.equals("abs") || str.equals("A")) {
+				valueInCalc = valueInCalc.getAbsVal();
+			} else if (str.equals("n") || str.equals("neg") || str.equals("N"))  {
+				valueInCalc = valueInCalc.negate();
+			} else if (str.equals("c") || str.equals("clear") || str.equals("C"))  {
+				valueInCalc = new Fraction(0, 1);
+			} else if (str.equals("+") || str.equals("-") 
+						|| str.equals("*") 
+						|| str.equals("/") ) {
+				if(stored == "") {
+					stored = str; 
+				} else {
+					System.out.println("Operator already stored, please enter a fraction");
 					break;
 				}
+			} else if(str.matches("(-?\\d+\\/-?\\d+)")) {
+				Fraction inputFrac = toFraction(str);
+				
+				//evaluate operation
+				if (stored.equals("+")) {
+				valueInCalc = valueInCalc.add(inputFrac);
+				} else if (stored.equals("-")) {
+					valueInCalc = valueInCalc.subtract(inputFrac);
+				} else if (stored.equals("*")) {
+					valueInCalc = valueInCalc.multiply(inputFrac);
+				} else if (stored.equals("/")) {
+					valueInCalc = valueInCalc.divide(inputFrac);
+				}
+				
+				stored = "";
+				
 			}
+						
+		} 
+	
+			Fraction result = valueInCalc; 
+			valueInCalc = new Fraction(0, 1);
 			
-			for (int j = split+1; j < input.length(); j++) { 
-				fractionSubstr += input.substring(j, j+1);
-			}
-			
-			Fraction inputFrac = toFraction(fractionSubstr);
-			
-			if (stored == '+') {
-			valueinCalc = fraction.add(inputFrac);
-			} else if (stored == '-') {
-				valueinCalc = fraction.subtract(inputFrac);
-			} else if (stored == '*') {
-				valueinCalc = fraction.multiply(inputFrac);
-			} else if (stored == '/') {
-				valueinCalc = fraction.divide(inputFrac);
-			}
-		}
-		
-		Fraction result = valueinCalc; //repeat for remaining string
-
 		return result;
 	}
 	
