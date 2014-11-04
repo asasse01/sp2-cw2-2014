@@ -2,7 +2,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Rule;
 import org.junit.Test;
-import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
+//import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
 import org.junit.rules.ExpectedException;
 
 public class FractionCalculatorTest {
@@ -50,7 +50,7 @@ public class FractionCalculatorTest {
 	@Test
 	public void testException() {
 	    exception.expect(IllegalArgumentException.class);
-		    
+	    FractionCalculator.evaluate((new Fraction(1, 6)), "testing");    
 	}
     
 	@Test
