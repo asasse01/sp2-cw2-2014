@@ -16,6 +16,7 @@ public class FractionCalculator {
 		String[] absolute = {"a", "A", "abs"};
 		String[] negate = {"n", "N", "neg"};
 		String[] clear = {"c", "C", "clear"};
+		String[] quit = {"q", "Q", "quit"};
 		String[] operator = {"+", "-", "*", "/"};
 	 
 		for (String str : splitString) { 
@@ -27,7 +28,10 @@ public class FractionCalculator {
 				valueInCalc = valueInCalc.negate();
 			} else if (Arrays.asList(clear).contains(str))  {
 				valueInCalc = new Fraction(0, 1);
-			} else if (Arrays.asList(operator).contains(str)) {
+			} else if (Arrays.asList(quit).contains(str))  {
+				System.out.println("Goodbye");
+				break;
+	        } else if (Arrays.asList(operator).contains(str)) {
 				if(stored == "") {
 					stored = str; 
 				} else {
