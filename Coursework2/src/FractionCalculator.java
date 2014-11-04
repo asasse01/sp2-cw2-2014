@@ -54,7 +54,12 @@ public class FractionCalculator {
 				
 				stored = "";
 				
-			}
+			} else {
+				input = "";
+				stored = "";
+				valueInCalc = new Fraction(0, 1);
+	        	throw new IllegalArgumentException("Invalid input");
+	        }
 						
 		} 
 	
