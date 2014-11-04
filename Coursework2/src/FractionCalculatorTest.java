@@ -43,6 +43,15 @@ public class FractionCalculatorTest {
 			assertEquals("Goodbye", log.getLog());
 		}
 		*/
+	
+	@Rule
+	public ExpectedException exception = ExpectedException.none();
+	
+	@Test
+	public void testException() {
+	    exception.expect(IllegalArgumentException.class);
+		    
+	}
     
 	@Test
 	public void testToFraction() {
