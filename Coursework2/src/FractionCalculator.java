@@ -1,22 +1,37 @@
 import java.util.Arrays;
+import java.util.Scanner;
+
 
 public class FractionCalculator {
-
+	static Fraction valueInCalc;
+	static String stored;
+	
 	public static void main(String[] args) {
+		valueInCalc = new Fraction(0, 1);
+		stored = "";
+	    
+		System.out.println("Welcome to Abby's fraction calculator.");
+		System.out.println("Please enter lines to be calculated, and 'q' or 'quit' to end:");
+		Scanner in = new Scanner(System.in);
+
+		while(true) {
+			String input = in.nextLine();
+			System.out.println(evaluate(valueInCalc, input));
+		}
+		
+		//in.close();
 
 	}
 
 	
 	public static Fraction evaluate(Fraction fraction, String input) {
-		Fraction valueInCalc = new Fraction(0, 1); //class var?
 		valueInCalc = fraction;
-		String stored = "";
 		String[] splitString = input.split(" ");
 		String fractionFormat = "(-?\\d+\\/-?\\d+)|(-?\\d+)";
 		String[] absolute = {"a", "A", "abs"};
 		String[] negate = {"n", "N", "neg"};
 		String[] clear = {"c", "C", "clear"};
-//		String[] quit = {"q", "Q", "quit"};
+		String[] quit = {"q", "Q", "quit"};
 		String[] operator = {"+", "-", "*", "/"};
 	 
 		for (String str : splitString) { 
@@ -28,9 +43,9 @@ public class FractionCalculator {
 				valueInCalc = valueInCalc.negate();
 			} else if (Arrays.asList(clear).contains(str))  {
 				valueInCalc = new Fraction(0, 1);
-//			} else if (Arrays.asList(quit).contains(str))  {
-//				System.out.println("Goodbye");
-//				break;
+			} else if (Arrays.asList(quit).contains(str))  {
+				System.out.println("Goodbye");
+				break;
 	        } else if (Arrays.asList(operator).contains(str)) {
 				if(stored == "") {
 					stored = str; 
@@ -64,7 +79,6 @@ public class FractionCalculator {
 		} 
 	
 			Fraction result = valueInCalc; 
-			valueInCalc = new Fraction(0, 1);
 			
 		return result;
 	}
