@@ -89,17 +89,15 @@ public class FractionCalculator {
 		//method converts string to fraction
 		int num;
 		int denom;
-		int numEnd = str.length();
-		for (int i = 0; i < str.length(); i++) {
-			if (str.charAt(i) != '/') {
-				numEnd = i+1;
-			} else break;
-		}
-		num = Integer.parseInt(str.substring(0, numEnd));
-		if (numEnd == (str.length())) {
+		String[] splitString = str.split("/");
+		
+		num = Integer.parseInt(splitString[0]);
+		if (splitString.length < 2) {
 			denom = 1;
-		} else denom = Integer.parseInt(str.substring(numEnd+1));
+		} else denom = Integer.parseInt(splitString[1]);
+		
 		Fraction result = new Fraction(num, denom);
+
 		return result;
 
 	}
