@@ -85,9 +85,26 @@ public class FractionCalculator {
 	
 	
 	public static Fraction toFraction(String str) {
-		//method converts string to fraction
+		int denom;
 		int numDigits = 0;
 		int numEnd = str.length();
+		for (int i = 0; i < str.length(); i++) {
+			if (str.charAt(i) != '/') {
+				numDigits++;
+			} else break;
+		}
+		numEnd = numDigits;
+		int num = Integer.parseInt(str.substring(0, numEnd));
+		if (numEnd == (str.length())) {
+			denom = 1;
+		} else denom = Integer.parseInt(str.substring(numEnd+1));
+		Fraction result = new Fraction(num, denom);
+		return result;
+		
+		//method converts string to fraction
+		/*int numDigits = 0;
+		int numEnd = 0;
+		int denom = 1;
 		
 		for (int i = 0; (str.charAt(i) != '/'); i++) {
 			numDigits++;
@@ -95,11 +112,13 @@ public class FractionCalculator {
 		numEnd = numDigits;
 		
 		int num = Integer.parseInt(str.substring(0, numEnd));
-		int denom = Integer.parseInt(str.substring(numEnd+1));
+		//if (numEnd != (str.length())) {
+			denom = Integer.parseInt(str.substring(numEnd+1));
+		//}
 
 		Fraction result = new Fraction(num, denom);
 				
-		return result;
+		return result;*/
 	}
 
 }
