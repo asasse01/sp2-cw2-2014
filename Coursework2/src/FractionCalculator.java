@@ -32,29 +32,29 @@ public class FractionCalculator {
 		String[] negate = {"n", "N", "neg"};
 		String[] clear = {"c", "C", "clear"};
 		String[] quit = {"q", "Q", "quit"};
-		String[] operator = {"+", "-", "*", "/"};
+		String[] sign = {"+", "-", "*", "/"};
 	 
-		for (String str : splitString) { 
+		for (String inputSubstr : splitString) { 
 			
 			// evaluate other variables
-			if (Arrays.asList(absolute).contains(str)) {
+			if (Arrays.asList(absolute).contains(inputSubstr)) {
 				valueInCalc = valueInCalc.getAbsVal();
-			} else if (Arrays.asList(negate).contains(str))  {
+			} else if (Arrays.asList(negate).contains(inputSubstr))  {
 				valueInCalc = valueInCalc.negate();
-			} else if (Arrays.asList(clear).contains(str))  {
+			} else if (Arrays.asList(clear).contains(inputSubstr))  {
 				valueInCalc = new Fraction(0, 1);
-			} else if (Arrays.asList(quit).contains(str))  {
+			/*} else if (Arrays.asList(quit).contains(inputSubstr))  {
 				System.out.println("Goodbye");
-				break;
-	        } else if (Arrays.asList(operator).contains(str)) {
+				break;*/
+	        } else if (Arrays.asList(sign).contains(inputSubstr)) {
 				if(stored == "") {
-					stored = str; 
+					stored = inputSubstr; 
 				} else {
 					System.out.println("Operator already stored, please enter a fraction");
 					break;
 				}
-			} else if(str.matches(fractionFormat)) {
-				Fraction inputFrac = toFraction(str);
+			} else if(inputSubstr.matches(fractionFormat)) {
+				Fraction inputFrac = toFraction(inputSubstr);
 				
 				//evaluate operation
 				if (stored.equals("+")) {
@@ -70,6 +70,7 @@ public class FractionCalculator {
 				stored = "";
 				
 			} else {
+				//
 				input = "";
 				stored = "";
 				valueInCalc = new Fraction(0, 1);
