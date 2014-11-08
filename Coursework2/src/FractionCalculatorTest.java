@@ -28,8 +28,7 @@ public class FractionCalculatorTest {
 		assertEquals((new Fraction(-23, 20)), FractionCalculator.evaluate((new Fraction(3, 10)), "+ -2/10 + -5/4"));
 		assertEquals((new Fraction(-5, 4)), FractionCalculator.evaluate((new Fraction(1, 6)), "- 11/12 - 1/2"));
 		assertEquals((new Fraction(-2, 5)), FractionCalculator.evaluate((new Fraction(8, 10)), "/ 4/2 * -1/1"));
-		//assertEquals((new Fraction(-1, 2)), FractionCalculator.evaluate((new Fraction(3, 10)), "/ 3/5 n")); 
-		//TODO work out why this test is now failing.
+		assertEquals((new Fraction(-1, 2)), FractionCalculator.evaluate((new Fraction(3, 10)), "/ 3/5 n")); 
 		assertEquals((new Fraction(5, 6)), FractionCalculator.evaluate((new Fraction(-4, 8)), "- 1/3 A"));
 		assertEquals((new Fraction(0, 1)), FractionCalculator.evaluate((new Fraction(-2, 3)), "- 4/5 clear"));
 
