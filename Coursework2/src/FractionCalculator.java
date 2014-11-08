@@ -65,7 +65,7 @@ public class FractionCalculator {
 					valueInCalc = valueInCalc.multiply(inputFrac);
 				} else if (stored.equals("/")) {
 					valueInCalc = valueInCalc.divide(inputFrac);
-				}
+				} else valueInCalc = inputFrac;
 				
 				stored = "";
 				
