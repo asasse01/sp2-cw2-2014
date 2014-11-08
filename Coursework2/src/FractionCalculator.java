@@ -3,57 +3,56 @@ import java.util.Scanner;
 
 
 public class FractionCalculator {
-	static Fraction valueInCalc;
-	static String stored;
+	public static final String FRACTIONFORMAT = "(-?\\d+\\/-?\\d+)|(-?\\d+)";
+	public static final String[] ABSOLUTE = {"a", "A", "abs"};
+	public static final String[] NEGATE = {"n", "N", "neg"};
+	public static final String[] CLEAR = {"c", "C", "clear"};
+	public static final String[] QUIT = {"q", "Q", "quit"};
+	public static final String[] SIGN = {"+", "-", "*", "/"};
+	public static final Fraction ZERO = new Fraction(0, 1);
+	public static Scanner in = new Scanner(System.in);
 	
 	public static void main(String[] args) {
-		valueInCalc = new Fraction(0, 1);
-		stored = "";
+		Fraction valueInCalc = ZERO;
 	    
 		System.out.println("Welcome to Abby's fraction calculator.");
 		System.out.println("Please enter lines to be calculated, and 'q' or 'quit' to end:");
-		Scanner in = new Scanner(System.in);
 
 		while(true) {
 			String input = in.nextLine();
-			System.out.println(evaluate(valueInCalc, input));
-		}
-		
-		//in.close();
-
+			valueInCalc = evaluate(valueInCalc, input);
+			System.out.println(valueInCalc);
+		}		
 	}
 
 	
-	public static Fraction evaluate(Fraction fraction, String input) {
-		valueInCalc = fraction;
+	public static Fraction evaluate(Fraction frac, String input) {
+		Fraction valueInCalc = frac;
+		String stored = "";
 		String[] splitString = input.split(" ");
-		String fractionFormat = "(-?\\d+\\/-?\\d+)|(-?\\d+)";
-		String[] absolute = {"a", "A", "abs"};
-		String[] negate = {"n", "N", "neg"};
-		String[] clear = {"c", "C", "clear"};
-		String[] quit = {"q", "Q", "quit"};
-		String[] sign = {"+", "-", "*", "/"};
 	 
 		for (String inputSubstr : splitString) { 
 			
 			// evaluate other variables
-			if (Arrays.asList(absolute).contains(inputSubstr)) {
+			if (Arrays.asList(ABSOLUTE).contains(inputSubstr)) {
 				valueInCalc = valueInCalc.getAbsVal();
-			} else if (Arrays.asList(negate).contains(inputSubstr))  {
+			} else if (Arrays.asList(NEGATE).contains(inputSubstr))  {
 				valueInCalc = valueInCalc.negate();
-			} else if (Arrays.asList(clear).contains(inputSubstr))  {
+			} else if (Arrays.asList(CLEAR).contains(inputSubstr))  {
 				valueInCalc = new Fraction(0, 1);
-			/*} else if (Arrays.asList(quit).contains(inputSubstr))  {
+			/*} else if (Arrays.asList(QUIT).contains(inputSubstr))  {
 				System.out.println("Goodbye");
+				in.close();
 				break;*/
-	        } else if (Arrays.asList(sign).contains(inputSubstr)) {
+	        } else if (Arrays.asList(SIGN).contains(inputSubstr)) {
 				if(stored == "") {
 					stored = inputSubstr; 
 				} else {
 					System.out.println("Operator already stored, please enter a fraction");
+					in.close();
 					break;
 				}
-			} else if(inputSubstr.matches(fractionFormat)) {
+			} else if(inputSubstr.matches(FRACTIONFORMAT)) {
 				Fraction inputFrac = toFraction(inputSubstr);
 				
 				//evaluate operation
@@ -70,10 +69,9 @@ public class FractionCalculator {
 				stored = "";
 				
 			} else {
-				//
 				input = "";
 				stored = "";
-				valueInCalc = new Fraction(0, 1);
+				valueInCalc = ZERO;
 	        	throw new IllegalArgumentException("Invalid input");
 	        }
 						
