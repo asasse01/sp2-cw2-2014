@@ -1,6 +1,15 @@
+/**
+ * @author Abby Sassel
+ * @since 18/10/2014
+ *
+ * Coursework2 
+ * - Extends the FractionTest and Fraction classes associated with this coursework assignment.
+ * - Performs as a simple text based calculator to compute with fractions.
+ *
+ */
+
 import java.util.Arrays;
 import java.util.Scanner;
-
 
 public class FractionCalculator {
 	public static final String FRACTIONFORMAT = "(-?\\d+\\/-?\\d+)|(-?\\d+)";
@@ -30,7 +39,12 @@ public class FractionCalculator {
 		}		
 	}
 
-	
+    /**
+     * evaluate method computes result of string of operation on Fraction
+     * @param frac fraction to perform operations on (in order of writing)
+     * @param input some mixture of numbers and operators, separated by spaces, to be performed on frac in order of writing
+     * @return valueInCalc the final result of calculating the input
+     */
 	public static Fraction evaluate(Fraction frac, String input) {
 		Fraction valueInCalc = frac;
 		String stored = EMPTY;
@@ -84,7 +98,11 @@ public class FractionCalculator {
 		return valueInCalc;
 	}
 	
-	
+    /**
+     * toFraction method parses String to Fraction
+     * @param str String to be parsed
+     * @return resulting Fraction
+     */
 	public static Fraction toFraction(String str) {
 		//method converts string to fraction
 		int num;
@@ -96,9 +114,9 @@ public class FractionCalculator {
 			denom = 1;
 		} else denom = Integer.parseInt(splitString[1]);
 
-		Fraction result = new Fraction(num, denom);
+		Fraction frac = new Fraction(num, denom);
 
-		return result;
+		return frac;
 
 	}
 
