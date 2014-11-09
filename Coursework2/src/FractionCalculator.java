@@ -4,12 +4,17 @@ import java.util.Scanner;
 
 public class FractionCalculator {
 	public static final String FRACTIONFORMAT = "(-?\\d+\\/-?\\d+)|(-?\\d+)";
+	public static final int MAXFRACELEMENTS = 2;
 	public static final String[] ABSOLUTE = {"a", "A", "abs"};
 	public static final String[] NEGATE = {"n", "N", "neg"};
 	public static final String[] CLEAR = {"c", "C", "clear"};
 	public static final String[] QUIT = {"q", "Q", "quit"};
-	public static final String[] SIGN = {"+", "-", "*", "/"};
+	public static final String[] SYMBOL = {"+", "-", "*", "/"};
+	public static final String SPACEDELIM = " ";
+	public static final String SLASHDELIM = "/";
+
 	public static final Fraction ZERO = new Fraction(0, 1);
+	
 	public static Scanner in = new Scanner(System.in);
 	
 	public static void main(String[] args) {
@@ -29,7 +34,7 @@ public class FractionCalculator {
 	public static Fraction evaluate(Fraction frac, String input) {
 		Fraction valueInCalc = frac;
 		String stored = "";
-		String[] splitString = input.split(" ");
+		String[] splitString = input.split(SPACEDELIM);
 	 
 		for (String inputSubstr : splitString) { 
 			
@@ -39,17 +44,16 @@ public class FractionCalculator {
 			} else if (Arrays.asList(NEGATE).contains(inputSubstr))  {
 				valueInCalc = valueInCalc.negate();
 			} else if (Arrays.asList(CLEAR).contains(inputSubstr))  {
-				valueInCalc = new Fraction(0, 1);
-			/*} else if (Arrays.asList(QUIT).contains(inputSubstr))  {
+				valueInCalc = ZERO;
+			} else if (Arrays.asList(QUIT).contains(inputSubstr))  {
 				System.out.println("Goodbye");
-				in.close();
-				break;*/
-	        } else if (Arrays.asList(SIGN).contains(inputSubstr)) {
+				//in.close();
+				break;
+	        } else if (Arrays.asList(SYMBOL).contains(inputSubstr)) {
 				if(stored == "") {
 					stored = inputSubstr; 
 				} else {
 					System.out.println("Operator already stored, please enter a fraction");
-					in.close();
 					break;
 				}
 			} else if(inputSubstr.matches(FRACTIONFORMAT)) {
@@ -66,20 +70,19 @@ public class FractionCalculator {
 					valueInCalc = valueInCalc.divide(inputFrac);
 				} else valueInCalc = inputFrac;
 				
-				stored = "";
+				stored = ""; //once value operated on, clear stored symbol
 				
 			} else {
 				input = "";
 				stored = "";
 				valueInCalc = ZERO;
-	        	throw new IllegalArgumentException("Invalid input");
+				System.out.println("Error");
+				break;
 	        }
 						
 		} 
-	
-			Fraction result = valueInCalc; 
-			
-		return result;
+				
+		return valueInCalc;
 	}
 	
 	
@@ -87,13 +90,13 @@ public class FractionCalculator {
 		//method converts string to fraction
 		int num;
 		int denom;
-		String[] splitString = str.split("/");
+		String[] splitString = str.split(SLASHDELIM);
 		
 		num = Integer.parseInt(splitString[0]);
-		if (splitString.length < 2) {
+		if (splitString.length < MAXFRACELEMENTS) {
 			denom = 1;
 		} else denom = Integer.parseInt(splitString[1]);
-		
+
 		Fraction result = new Fraction(num, denom);
 
 		return result;
