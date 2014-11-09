@@ -12,7 +12,7 @@ public class FractionCalculator {
 	public static final String[] SYMBOL = {"+", "-", "*", "/"};
 	public static final String SPACEDELIM = " ";
 	public static final String SLASHDELIM = "/";
-
+	public static final String EMPTY = "";
 	public static final Fraction ZERO = new Fraction(0, 1);
 	
 	public static Scanner in = new Scanner(System.in);
@@ -33,7 +33,7 @@ public class FractionCalculator {
 	
 	public static Fraction evaluate(Fraction frac, String input) {
 		Fraction valueInCalc = frac;
-		String stored = "";
+		String stored = EMPTY;
 		String[] splitString = input.split(SPACEDELIM);
 	 
 		for (String inputSubstr : splitString) { 
@@ -47,10 +47,9 @@ public class FractionCalculator {
 				valueInCalc = ZERO;
 			} else if (Arrays.asList(QUIT).contains(inputSubstr))  {
 				System.out.println("Goodbye");
-				//in.close();
-				break;
+				System.exit(0);
 	        } else if (Arrays.asList(SYMBOL).contains(inputSubstr)) {
-				if(stored == "") {
+				if(stored == EMPTY) {
 					stored = inputSubstr; 
 				} else {
 					System.out.println("Operator already stored, please enter a fraction");
@@ -70,11 +69,11 @@ public class FractionCalculator {
 					valueInCalc = valueInCalc.divide(inputFrac);
 				} else valueInCalc = inputFrac;
 				
-				stored = ""; //once value operated on, clear stored symbol
+				stored = EMPTY; //once value operated on, clear stored symbol
 				
 			} else {
-				input = "";
-				stored = "";
+				input = EMPTY;
+				stored = EMPTY;
 				valueInCalc = ZERO;
 				System.out.println("Error");
 				break;
