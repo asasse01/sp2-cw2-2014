@@ -1,13 +1,9 @@
 import static org.junit.Assert.*;
 
-import org.junit.Rule;
 import org.junit.Test;
-//import org.junit.contrib.java.lang.system.StandardOutputStreamLog;
-import org.junit.rules.ExpectedException;
 
 public class FractionCalculatorTest {
 
-	
 	@Test
 	public void testEvaluate() {
 		//evaluates single fraction operation
@@ -33,27 +29,6 @@ public class FractionCalculatorTest {
 		assertEquals((new Fraction(0, 1)), FractionCalculator.evaluate((new Fraction(-2, 3)), "- 4/5 clear"));
 
 	}
-	
-	/*TODO correct test for quit function
-	//testing System Rules from examples at http://stefanbirkner.github.io/system-rules/index.html
-		@Rule
-		public final StandardOutputStreamLog log = new StandardOutputStreamLog();
-
-		@Test
-		public void testQuit() {
-			System.out.print("Goodbye");
-			assertEquals("Goodbye", log.getLog());
-		}
-		*/
-	
-	@Rule
-	public ExpectedException exception = ExpectedException.none();
-	
-	@Test
-	public void testException() {
-	    exception.expect(IllegalArgumentException.class);
-	    FractionCalculator.evaluate((new Fraction(1, 6)), "testing");    
-	}
     
 	@Test
 	public void testToFraction() {
@@ -63,5 +38,16 @@ public class FractionCalculatorTest {
 		assertEquals((new Fraction(2, 5)), FractionCalculator.toFraction("-2/-5"));
 		assertEquals((new Fraction(10, 1)), FractionCalculator.toFraction("10"));
 	}
+	
+	/*
+	//testing System Rules from examples at http://stefanbirkner.github.io/system-rules/index.html
+	@Rule
+	public final StandardOutputStreamLog log = new StandardOutputStreamLog();
+
+	@Test
+	public void testQuit() {
+		System.out.print("Goodbye");
+		assertEquals("Goodbye", log.getLog());
+	}*/
 
 }
