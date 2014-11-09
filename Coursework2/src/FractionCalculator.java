@@ -14,7 +14,6 @@ import java.util.Scanner;
 public class FractionCalculator {
 	public static final String FRACTIONFORMAT = "(-?\\d+\\/-?\\d+)|(-?\\d+)";
 	public static final int MAXFRACELEMENTS = 2;
-
 	public static final String[] ABSOLUTE = {"a", "A", "abs"};
 	public static final String[] NEGATE = {"n", "N", "neg"};
 	public static final String[] CLEAR = {"c", "C", "clear"};
@@ -59,12 +58,13 @@ public class FractionCalculator {
 				stored = EMPTY; //once value operated on, clear stored symbol
 				
 			} else if (Arrays.asList(SYMBOL).contains(inputSubstr)) {
-				stored = evaluateSymbol(stored, inputSubstr);
+				stored = storeSymbol(stored, inputSubstr);
 				
 			} else if (searchNestedArray(TEXTINPUT, inputSubstr)) {
 				valueInCalc = evaluateText(valueInCalc, inputSubstr);
 				
 			} else {
+				//exception: clear all values and print error
 				input = EMPTY;
 				stored = EMPTY;
 				valueInCalc = ZERO;
@@ -98,6 +98,12 @@ public class FractionCalculator {
 		return frac;
 	}
 
+    /**
+     * searchNestedArray searches a 2d array for any given String
+     * @param nestedArray array to search
+     * @param inputSubstr string to find
+     * @return boolean to indicate presence in array
+     */
 	public static boolean searchNestedArray(String[][] nestedArray, String inputSubstr)  {
 		for (String[] other : nestedArray) {
 			if (Arrays.asList(other).contains(inputSubstr)) {
@@ -106,6 +112,12 @@ public class FractionCalculator {
 		} return false;
 	}
 	
+    /**
+     * evaluateText evaluates text input as defined in coursework spec
+     * @param valueInCalc fraction to operate on
+     * @param inputSubstr string contain text operator
+     * @return resulting Fraction
+     */
 	public static Fraction evaluateText(Fraction valueInCalc, String inputSubstr) {
 		if (Arrays.asList(ABSOLUTE).contains(inputSubstr)) {
 			valueInCalc = valueInCalc.getAbsVal();
@@ -120,7 +132,13 @@ public class FractionCalculator {
 		return valueInCalc;
 	}
 	
-	public static String evaluateSymbol(String stored, String inputSymbol) {
+    /**
+     * storeSymbol checks symbol is empty and stores input symbol
+     * @param stored variable to store symbol in if empty
+     * @param inputSymbol symbol to store
+     * @return stored symbol
+     */
+	public static String storeSymbol(String stored, String inputSymbol) {
 		if(stored == EMPTY) {
 			return inputSymbol; 
 			} else {
@@ -129,6 +147,13 @@ public class FractionCalculator {
 			}
 	}
 	
+    /**
+     * evaluateFraction calculates operation with given input
+     * @param valueInCalc fraction to operate on
+     * @param inputSymbol operation
+     * @param inputSubstr remaining operand
+     * @return resulting Fraction
+     */
 	public static Fraction evaluateFraction(Fraction valueInCalc, String inputSymbol, String inputSubstr) {
 		Fraction inputFrac = toFraction(inputSubstr);
 		
