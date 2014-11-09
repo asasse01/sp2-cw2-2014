@@ -1,6 +1,9 @@
 import static org.junit.Assert.*;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.contrib.java.lang.system.ExpectedSystemExit;
+
 
 public class FractionCalculatorTest {
 
@@ -39,15 +42,13 @@ public class FractionCalculatorTest {
 		assertEquals((new Fraction(10, 1)), FractionCalculator.toFraction("10"));
 	}
 	
-	/*
-	//testing System Rules from examples at http://stefanbirkner.github.io/system-rules/index.html
-	@Rule
-	public final StandardOutputStreamLog log = new StandardOutputStreamLog();
+    @Rule
+    public final ExpectedSystemExit exit = ExpectedSystemExit.none();
 
-	@Test
-	public void testQuit() {
-		System.out.print("Goodbye");
-		assertEquals("Goodbye", log.getLog());
-	}*/
+    @Test
+    public void testSystemExit() {
+        exit.expectSystemExitWithStatus(0);
+        System.exit(0);
+    }
 
 }
